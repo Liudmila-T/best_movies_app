@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.testtask.best_movies_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "29.0.13113456"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

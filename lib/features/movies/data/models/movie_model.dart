@@ -9,11 +9,11 @@ part 'movie_model.g.dart';
 class MovieModel with _$MovieModel {
   const factory MovieModel({
     required int id,
-    required String title,
-    required String posterPath,
+    @JsonKey(name: 'original_title') required String originalTitle,
+    @JsonKey(name: 'poster_path') required String posterPath,
     required String overview,
-    required String releaseDate,
-    required double voteAverage,
+    @JsonKey(name: 'release_date') required String releaseDate,
+    @JsonKey(name: 'vote_average') required double voteAverage,
   }) = _MovieModel;
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
@@ -23,7 +23,7 @@ extension MovieModelMapper on MovieModel {
   Movie toEntity() {
     return Movie(
       id: id,
-      title: title,
+      title: originalTitle,
       posterPath: posterPath,
       overview: overview,
       releaseDate: releaseDate,

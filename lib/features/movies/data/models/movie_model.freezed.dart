@@ -22,10 +22,14 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MovieModel {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'original_title')
+  String get originalTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'poster_path')
   String get posterPath => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'release_date')
   String get releaseDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vote_average')
   double get voteAverage => throw _privateConstructorUsedError;
 
   /// Serializes this MovieModel to a JSON map.
@@ -47,11 +51,11 @@ abstract class $MovieModelCopyWith<$Res> {
   @useResult
   $Res call({
     int id,
-    String title,
-    String posterPath,
+    @JsonKey(name: 'original_title') String originalTitle,
+    @JsonKey(name: 'poster_path') String posterPath,
     String overview,
-    String releaseDate,
-    double voteAverage,
+    @JsonKey(name: 'release_date') String releaseDate,
+    @JsonKey(name: 'vote_average') double voteAverage,
   });
 }
 
@@ -71,7 +75,7 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
+    Object? originalTitle = null,
     Object? posterPath = null,
     Object? overview = null,
     Object? releaseDate = null,
@@ -84,10 +88,10 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
                     ? _value.id
                     : id // ignore: cast_nullable_to_non_nullable
                         as int,
-            title:
-                null == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
+            originalTitle:
+                null == originalTitle
+                    ? _value.originalTitle
+                    : originalTitle // ignore: cast_nullable_to_non_nullable
                         as String,
             posterPath:
                 null == posterPath
@@ -126,11 +130,11 @@ abstract class _$$MovieModelImplCopyWith<$Res>
   @useResult
   $Res call({
     int id,
-    String title,
-    String posterPath,
+    @JsonKey(name: 'original_title') String originalTitle,
+    @JsonKey(name: 'poster_path') String posterPath,
     String overview,
-    String releaseDate,
-    double voteAverage,
+    @JsonKey(name: 'release_date') String releaseDate,
+    @JsonKey(name: 'vote_average') double voteAverage,
   });
 }
 
@@ -149,7 +153,7 @@ class __$$MovieModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
+    Object? originalTitle = null,
     Object? posterPath = null,
     Object? overview = null,
     Object? releaseDate = null,
@@ -162,10 +166,10 @@ class __$$MovieModelImplCopyWithImpl<$Res>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                     as int,
-        title:
-            null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
+        originalTitle:
+            null == originalTitle
+                ? _value.originalTitle
+                : originalTitle // ignore: cast_nullable_to_non_nullable
                     as String,
         posterPath:
             null == posterPath
@@ -197,11 +201,11 @@ class __$$MovieModelImplCopyWithImpl<$Res>
 class _$MovieModelImpl implements _MovieModel {
   const _$MovieModelImpl({
     required this.id,
-    required this.title,
-    required this.posterPath,
+    @JsonKey(name: 'original_title') required this.originalTitle,
+    @JsonKey(name: 'poster_path') required this.posterPath,
     required this.overview,
-    required this.releaseDate,
-    required this.voteAverage,
+    @JsonKey(name: 'release_date') required this.releaseDate,
+    @JsonKey(name: 'vote_average') required this.voteAverage,
   });
 
   factory _$MovieModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -210,19 +214,23 @@ class _$MovieModelImpl implements _MovieModel {
   @override
   final int id;
   @override
-  final String title;
+  @JsonKey(name: 'original_title')
+  final String originalTitle;
   @override
+  @JsonKey(name: 'poster_path')
   final String posterPath;
   @override
   final String overview;
   @override
+  @JsonKey(name: 'release_date')
   final String releaseDate;
   @override
+  @JsonKey(name: 'vote_average')
   final double voteAverage;
 
   @override
   String toString() {
-    return 'MovieModel(id: $id, title: $title, posterPath: $posterPath, overview: $overview, releaseDate: $releaseDate, voteAverage: $voteAverage)';
+    return 'MovieModel(id: $id, originalTitle: $originalTitle, posterPath: $posterPath, overview: $overview, releaseDate: $releaseDate, voteAverage: $voteAverage)';
   }
 
   @override
@@ -231,7 +239,8 @@ class _$MovieModelImpl implements _MovieModel {
         (other.runtimeType == runtimeType &&
             other is _$MovieModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
+            (identical(other.originalTitle, originalTitle) ||
+                other.originalTitle == originalTitle) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
             (identical(other.overview, overview) ||
@@ -247,7 +256,7 @@ class _$MovieModelImpl implements _MovieModel {
   int get hashCode => Object.hash(
     runtimeType,
     id,
-    title,
+    originalTitle,
     posterPath,
     overview,
     releaseDate,
@@ -271,11 +280,11 @@ class _$MovieModelImpl implements _MovieModel {
 abstract class _MovieModel implements MovieModel {
   const factory _MovieModel({
     required final int id,
-    required final String title,
-    required final String posterPath,
+    @JsonKey(name: 'original_title') required final String originalTitle,
+    @JsonKey(name: 'poster_path') required final String posterPath,
     required final String overview,
-    required final String releaseDate,
-    required final double voteAverage,
+    @JsonKey(name: 'release_date') required final String releaseDate,
+    @JsonKey(name: 'vote_average') required final double voteAverage,
   }) = _$MovieModelImpl;
 
   factory _MovieModel.fromJson(Map<String, dynamic> json) =
@@ -284,14 +293,18 @@ abstract class _MovieModel implements MovieModel {
   @override
   int get id;
   @override
-  String get title;
+  @JsonKey(name: 'original_title')
+  String get originalTitle;
   @override
+  @JsonKey(name: 'poster_path')
   String get posterPath;
   @override
   String get overview;
   @override
+  @JsonKey(name: 'release_date')
   String get releaseDate;
   @override
+  @JsonKey(name: 'vote_average')
   double get voteAverage;
 
   /// Create a copy of MovieModel
