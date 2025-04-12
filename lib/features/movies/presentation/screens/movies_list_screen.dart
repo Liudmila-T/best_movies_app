@@ -2,6 +2,7 @@ import 'package:best_movies_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/providers/navigation_provider.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/theme_mode_provider.dart';
 import '../../../../core/utils/assets.dart';
@@ -38,6 +39,7 @@ class _MoviesListScreenState extends ConsumerState<MoviesListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final navigationService = ref.watch(navigationProvider);
     final movies = ref.watch(movieListProvider).movies;
     final themeMode = ref.read(themeModeProvider);
     final isDarkMode = themeMode == ThemeMode.dark;
@@ -97,7 +99,9 @@ class _MoviesListScreenState extends ConsumerState<MoviesListScreen> {
                             onTapFavorite: () {
                               ref.read(favoritesProvider.notifier).toggleFavorite(movieId);
                             },
-                            onTap: () {},
+                            onTap: () {
+                              navigationService.goToMovieDetails(movieId);
+                            },
                           );
                         },
                       ),

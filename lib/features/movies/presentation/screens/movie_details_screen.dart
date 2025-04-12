@@ -1,0 +1,94 @@
+import 'package:best_movies_app/core/theme/app_colors.dart';
+import 'package:best_movies_app/core/theme/app_text_styles.dart';
+import 'package:best_movies_app/core/utils/date_format_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../core/providers/navigation_provider.dart';
+import '../../../../core/utils/assets.dart';
+import '../../../../core/utils/constans.dart';
+import '../providers/favorite_provider.dart';
+import '../providers/movie_details_provider.dart';
+import '../widgets/favorite_button.dart';
+import '../widgets/icon_button.dart';
+
+class MovieDetailsScreen extends ConsumerWidget {
+  final int movieId;
+
+  const MovieDetailsScreen({super.key, required this.movieId});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final movieAsync = ref.watch(movieDetailsProvider(movieId));
+    final favorites = ref.watch(favoritesProvider);
+    final navigationService = ref.watch(navigationProvider);
+
+    return movieAsync.when(
+      loading:
+          () =>
+              Material(color: context.primaryBackgroundColor, child: const Center(child: CircularProgressIndicator())),
+      error:
+          (e, _) =>
+              Material(color: context.primaryBackgroundColor, child: Center(child: Text('Error: ${e.toString()}'))),
+      data: (movie) {
+        final isFavorite = favorites.contains(movie.id);
+
+        return Scaffold(
+          backgroundColor: context.primaryBackgroundColor,
+          appBar: AppBar(
+            backgroundColor: context.primaryBackgroundColor,
+            elevation: 0,
+            leading: IconButtonWidget(icon: Assets.arrowLeft, onTap: () => navigationService.goBack()),
+            title: Text(
+              movie.title,
+              style: AppTextStyles.title30.copyWith(color: context.textColor),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 46.5),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.network(
+                      '${Constants.imageBaseUrl}${movie.posterPath}',
+                      width: double.infinity,
+                      height: MediaQuery.sizeOf(context).height * 0.5,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Center(
+                  child: Text(
+                    'Rating: ${movie.voteAverage}',
+                    style: AppTextStyles.subtitle10.copyWith(color: context.textColor),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(movie.overview, style: AppTextStyles.text12.copyWith(color: context.textColor)),
+                const SizedBox(height: 16),
+                Text(
+                  movie.releaseDate.toFormattedDate(),
+                  style: AppTextStyles.text12.copyWith(color: context.textColor),
+                ),
+                const SizedBox(height: 16),
+                FavoriteButton(
+                  isFavorite: isFavorite,
+                  onTap: () {
+                    ref.read(favoritesProvider.notifier).toggleFavorite(movieId);
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

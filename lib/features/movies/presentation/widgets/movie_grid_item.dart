@@ -4,7 +4,7 @@ import 'package:best_movies_app/core/utils/constans.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie.dart';
-import 'favorite_button.dart';
+import 'favorite_icon_button.dart';
 
 class MovieGridItem extends StatelessWidget {
   final Movie movie;
@@ -43,7 +43,10 @@ class MovieGridItem extends StatelessWidget {
                 Positioned(
                   top: 11,
                   right: 14,
-                  child: FavoriteButton(color: isFavorite ? context.activeFavoriteColor : null, onTap: onTapFavorite),
+                  child: FavoriteIconButton(
+                    color: isFavorite ? context.activeFavoriteColor : context.inactiveFavoriteColor,
+                    onTap: onTapFavorite,
+                  ),
                 ),
               ],
             ),

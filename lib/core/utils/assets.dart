@@ -8,5 +8,5 @@ class Assets {
   static const sun = '$_iconsPath/sun.svg';
   static const search = '$_iconsPath/search.svg';
   static const star = '$_iconsPath/star.svg';
-  static const arrowLeft = '$_iconsPath/arrowLeft.svg';
+  static const arrowLeft = '$_iconsPath/arrow_left.svg';
 }

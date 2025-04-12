@@ -22,8 +22,8 @@ class _AppColors {
   static const Color _darkButtonText1Color = Color(0xFF111111);
   static const Color _lightButtonText1Color = Color(0xFF111111);
 
-  static const Color _darkButtonBg2Color = Color(0xFFFFFFFF);
-  static const Color _lightButtonBg2Color = Color(0xFF000000);
+  static const Color _darkButtonBg2Color = Color(0xFF000000);
+  static const Color _lightButtonBg2Color = Color(0xFFFFFFFF);
 
   static const Color _darkButtonText2Color = Color(0xFFFFFFFF);
   static const Color _lightButtonText2Color = Color(0xFF000000);
@@ -41,7 +41,7 @@ extension AppColorScheme on BuildContext {
 
   Color get activeFavoriteColor => isDark ? _AppColors._darkActiveFavoriteColor : _AppColors._lightActiveFavoriteColor;
 
-  Color get starColor => isDark ? _AppColors._darkStarColor : _AppColors._lightStarColor;
+  Color get inactiveFavoriteColor => isDark ? _AppColors._darkStarColor : _AppColors._lightStarColor;
 
   Color get titleColor => isDark ? _AppColors._darkTitleColor : _AppColors._lightTitleColor;
 
