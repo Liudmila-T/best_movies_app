@@ -48,4 +48,22 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(Failure(message: 'Error: ${e.toString()}'));
     }
   }
+
+  Future<Either<Failure, List<Movie>>> searchMovies(String query) async {
+    try {
+      final response = await dio.get(
+        '${Constants.baseUrl}/search/movie',
+        queryParameters: {'api_key': Constants.apiKey, 'query': query},
+      );
+
+      if (response.statusCode == 200) {
+        final movies = (response.data['results'] as List).map((json) => MovieModel.fromJson(json)).toList();
+        return Right(movies.map((movie) => movie.toEntity()).toList());
+      } else {
+        return Left(Failure(message: 'Failed to load movies', code: response.statusCode));
+      }
+    } catch (e) {
+      return Left(Failure(message: 'Error: ${e.toString()}'));
+    }
+  }
 }

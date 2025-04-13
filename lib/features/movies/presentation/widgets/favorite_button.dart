@@ -2,6 +2,8 @@ import 'package:best_movies_app/core/theme/app_colors.dart';
 import 'package:best_movies_app/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/strings.dart';
+
 class FavoriteButton extends StatelessWidget {
   final bool isFavorite;
   final VoidCallback onTap;
@@ -27,7 +29,7 @@ class FavoriteButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          isFavorite ? 'Remove from favorites' : 'Add to favorites',
+          isFavorite ? AppStrings.removeFromFavorites : AppStrings.addToFavorites,
           style: AppTextStyles.buttonTitle16.copyWith(color: buttonTextColor),
         ),
       ),

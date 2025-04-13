@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/movies/presentation/screens/movie_details_screen.dart';
 import '../features/movies/presentation/screens/movies_list_screen.dart';
+import '../features/movies/presentation/screens/search_movies_screen.dart';
 
 GoRouter createRouter() {
   return GoRouter(
@@ -20,6 +21,7 @@ GoRouter createRouter() {
           return MovieDetailsScreen(movieId: movieId);
         },
       ),
+      GoRoute(path: '/search', builder: (context, state) => const SearchMoviesScreen()),
     ],
   );
 }
@@ -31,6 +33,10 @@ class NavigationService {
 
   void goToMovieDetails(int movieId) {
     goRouter.push('/movie/$movieId');
+  }
+
+  void goSearchMovies() {
+    goRouter.push('/search');
   }
 
   void goBack() {

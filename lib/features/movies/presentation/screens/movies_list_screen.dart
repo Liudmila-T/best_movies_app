@@ -6,6 +6,7 @@ import '../../../../core/providers/navigation_provider.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/theme_mode_provider.dart';
 import '../../../../core/utils/assets.dart';
+import '../../../../core/utils/strings.dart';
 import '../providers/favorite_provider.dart';
 import '../providers/movie_provider.dart';
 import '../widgets/icon_button.dart';
@@ -58,16 +59,21 @@ class _MoviesListScreenState extends ConsumerState<MoviesListScreen> {
                         padding: EdgeInsets.only(
                           left: 16,
                           right: 6,
-                          top: MediaQuery.paddingOf(context).top,
+                          top: MediaQuery.paddingOf(context).top + 33,
                           bottom: 24,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Movie', style: AppTextStyles.title30.copyWith(color: context.textColor)),
+                            Text(AppStrings.movie, style: AppTextStyles.title30.copyWith(color: context.textColor)),
                             Row(
                               children: [
-                                IconButtonWidget(icon: Assets.search, onTap: () {}),
+                                IconButtonWidget(
+                                  icon: Assets.search,
+                                  onTap: () {
+                                    navigationService.goSearchMovies();
+                                  },
+                                ),
                                 IconButtonWidget(
                                   icon: isDarkMode ? Assets.moon : Assets.sun,
                                   onTap: () {

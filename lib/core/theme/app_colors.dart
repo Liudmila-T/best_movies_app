@@ -28,7 +28,7 @@ class _AppColors {
   static const Color _darkButtonText2Color = Color(0xFFFFFFFF);
   static const Color _lightButtonText2Color = Color(0xFF000000);
 
-  static const Color _darkSearchColor = Color(0xFF000000);
+  static const Color _darkSearchColor = Color(0xFF2A2A2A);
   static const Color _lightSearchColor = Color(0xFFF1F1F1);
 }
 

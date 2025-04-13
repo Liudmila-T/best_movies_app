@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/providers/navigation_provider.dart';
 import '../../../../core/utils/assets.dart';
 import '../../../../core/utils/constans.dart';
+import '../../../../core/utils/strings.dart';
 import '../providers/favorite_provider.dart';
 import '../providers/movie_details_provider.dart';
 import '../widgets/favorite_button.dart';
@@ -35,54 +36,67 @@ class MovieDetailsScreen extends ConsumerWidget {
 
         return Scaffold(
           backgroundColor: context.primaryBackgroundColor,
-          appBar: AppBar(
-            backgroundColor: context.primaryBackgroundColor,
-            elevation: 0,
-            leading: IconButtonWidget(icon: Assets.arrowLeft, onTap: () => navigationService.goBack()),
-            title: Text(
-              movie.title,
-              style: AppTextStyles.title30.copyWith(color: context.textColor),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 14),
+          body: SafeArea(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 46.5),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.network(
-                      '${Constants.imageBaseUrl}${movie.posterPath}',
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height * 0.5,
-                      fit: BoxFit.cover,
-                    ),
+                  padding: const EdgeInsets.only(top: 33, right: 16),
+                  child: Row(
+                    children: [
+                      IconButtonWidget(icon: Assets.arrowLeft, onTap: () => navigationService.goBack()),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          movie.title,
+                          style: AppTextStyles.title30.copyWith(color: context.textColor),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 8),
-                Center(
-                  child: Text(
-                    'Rating: ${movie.voteAverage}',
-                    style: AppTextStyles.subtitle10.copyWith(color: context.textColor),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 46.5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.network(
+                            '${Constants.imageBaseUrl}${movie.posterPath}',
+                            width: double.infinity,
+                            height: MediaQuery.sizeOf(context).height * 0.5,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Center(
+                        child: Text(
+                          '${AppStrings.ratingLabel} ${movie.voteAverage}',
+                          style: AppTextStyles.subtitle10.copyWith(color: context.textColor),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(movie.overview, style: AppTextStyles.text12.copyWith(color: context.textColor)),
+                      const SizedBox(height: 16),
+                      Text(
+                        movie.releaseDate.toFormattedDate(),
+                        style: AppTextStyles.text12.copyWith(color: context.textColor),
+                      ),
+                      const SizedBox(height: 16),
+                      FavoriteButton(
+                        isFavorite: isFavorite,
+                        onTap: () {
+                          ref.read(favoritesProvider.notifier).toggleFavorite(movieId);
+                        },
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 16),
-                Text(movie.overview, style: AppTextStyles.text12.copyWith(color: context.textColor)),
-                const SizedBox(height: 16),
-                Text(
-                  movie.releaseDate.toFormattedDate(),
-                  style: AppTextStyles.text12.copyWith(color: context.textColor),
-                ),
-                const SizedBox(height: 16),
-                FavoriteButton(
-                  isFavorite: isFavorite,
-                  onTap: () {
-                    ref.read(favoritesProvider.notifier).toggleFavorite(movieId);
-                  },
                 ),
               ],
             ),

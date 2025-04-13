@@ -6,6 +6,7 @@ import '../../core/utils/constans.dart';
 import 'domain/repositories/movie_repository.dart';
 import 'domain/usecases/get_movie_by_id.dart';
 import 'domain/usecases/get_top_rated_movies.dart';
+import 'domain/usecases/search_movie.dart';
 
 final _dio = Dio(BaseOptions(baseUrl: Constants.baseUrl))
   ..interceptors.add(
@@ -34,4 +35,9 @@ final getTopRatedMoviesProvider = Provider<GetTopRatedMovies>((ref) {
 final getMovieByIdProvider = Provider<GetMovieById>((ref) {
   final movieRepository = ref.watch(movieRepositoryProvider);
   return GetMovieById(movieRepository);
+});
+
+final searchMoviesUseCaseProvider = Provider<SearchMovies>((ref) {
+  final repository = ref.watch(movieRepositoryProvider);
+  return SearchMovies(repository);
 });

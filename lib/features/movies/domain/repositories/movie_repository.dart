@@ -5,4 +5,5 @@ import 'package:either_dart/either.dart';
 abstract class MovieRepository {
   Future<Either<Failure, List<Movie>>> getTopRatedMovies(int page);
   Future<Either<Failure, Movie>> getMovieById(int id);
+  Future<Either<Failure, List<Movie>>> searchMovies(String query);
 }
