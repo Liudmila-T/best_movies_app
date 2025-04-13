@@ -1,20 +1,17 @@
+import 'package:best_movies_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class AppLoader extends StatelessWidget {
-  final double size;
-  final double strokeWidth;
-
-  const AppLoader({super.key, this.size = 48, this.strokeWidth = 6});
+class AppCircularLoader extends StatelessWidget {
+  const AppCircularLoader({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: CircularProgressIndicator(
-        strokeWidth: strokeWidth,
-        valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.primary),
-        backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+    return Center(
+      child: SpinKitCircle(
+        color: context.textColor.withAlpha(153), // opacity 0.6 (255 * 0.6 = 153)
+        size: 80.0,
+        duration: const Duration(milliseconds: 2000),
       ),
     );
   }
