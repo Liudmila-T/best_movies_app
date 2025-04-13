@@ -1,6 +1,7 @@
 import 'package:best_movies_app/core/theme/app_colors.dart';
 import 'package:best_movies_app/core/theme/app_text_styles.dart';
 import 'package:best_movies_app/core/utils/constans.dart';
+import 'package:best_movies_app/core/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie.dart';
@@ -58,7 +59,10 @@ class MovieGridItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.title14.copyWith(color: context.textColor),
           ),
-          Text('Rating: ${movie.voteAverage}', style: AppTextStyles.subtitle10.copyWith(color: context.textColor)),
+          Text(
+            '${AppStrings.ratingLabel} ${movie.voteAverage.toInt()}',
+            style: AppTextStyles.subtitle10.copyWith(color: context.textColor),
+          ),
         ],
       ),
     );

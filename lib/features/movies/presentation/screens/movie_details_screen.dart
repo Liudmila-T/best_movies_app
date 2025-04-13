@@ -75,7 +75,7 @@ class MovieDetailsScreen extends ConsumerWidget {
                       const SizedBox(height: 8),
                       Center(
                         child: Text(
-                          '${AppStrings.ratingLabel} ${movie.voteAverage}',
+                          '${AppStrings.ratingLabel} ${movie.voteAverage.toInt()}',
                           style: AppTextStyles.subtitle10.copyWith(color: context.textColor),
                         ),
                       ),
