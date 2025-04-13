@@ -1,6 +1,7 @@
 import 'package:best_movies_app/core/theme/app_colors.dart';
 import 'package:best_movies_app/core/theme/app_text_styles.dart';
 import 'package:best_movies_app/core/utils/date_format_extension.dart';
+import 'package:best_movies_app/features/movies/presentation/widgets/app_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,9 +26,7 @@ class MovieDetailsScreen extends ConsumerWidget {
     final navigationService = ref.watch(navigationProvider);
 
     return movieAsync.when(
-      loading:
-          () =>
-              Material(color: context.primaryBackgroundColor, child: const Center(child: CircularProgressIndicator())),
+      loading: () => Material(color: context.primaryBackgroundColor, child: AppCircularLoader()),
       error:
           (e, _) =>
               Material(color: context.primaryBackgroundColor, child: Center(child: Text('Error: ${e.toString()}'))),

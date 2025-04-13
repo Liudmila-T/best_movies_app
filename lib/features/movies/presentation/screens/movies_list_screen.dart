@@ -9,6 +9,7 @@ import '../../../../core/utils/assets.dart';
 import '../../../../core/utils/strings.dart';
 import '../providers/favorite_provider.dart';
 import '../providers/movie_provider.dart';
+import '../widgets/app_loader.dart';
 import '../widgets/icon_button.dart';
 import '../widgets/movie_grid_item.dart';
 
@@ -48,7 +49,7 @@ class _MoviesListScreenState extends ConsumerState<MoviesListScreen> {
       backgroundColor: context.primaryBackgroundColor,
       body:
           movies.isEmpty
-              ? const Center(child: CircularProgressIndicator())
+              ? AppCircularLoader()
               : SizedBox(
                 height: MediaQuery.sizeOf(context).height,
                 child: SingleChildScrollView(
