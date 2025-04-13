@@ -60,7 +60,7 @@ class _MoviesListScreenState extends ConsumerState<MoviesListScreen> {
                         padding: EdgeInsets.only(
                           left: 16,
                           right: 6,
-                          top: MediaQuery.paddingOf(context).top + 33,
+                          top: MediaQuery.paddingOf(context).top + 24,
                           bottom: 24,
                         ),
                         child: Row(

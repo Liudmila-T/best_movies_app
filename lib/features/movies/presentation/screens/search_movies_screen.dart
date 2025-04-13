@@ -28,7 +28,7 @@ class SearchMoviesScreen extends ConsumerWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 33, left: 16, right: 16),
+              padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
               child: Row(
                 children: [
                   IconButtonWidget(icon: Assets.arrowLeft, onTap: () => navigationService.goBack()),
@@ -59,6 +59,7 @@ class SearchMoviesScreen extends ConsumerWidget {
                   filled: true,
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide.none),
                 ),
+                style: AppTextStyles.text18Bold.copyWith(color: context.textColor),
               ),
             ),
             Expanded(

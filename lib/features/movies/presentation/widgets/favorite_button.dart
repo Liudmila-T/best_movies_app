@@ -18,7 +18,7 @@ class FavoriteButton extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: 47,
+      height: 54,
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(

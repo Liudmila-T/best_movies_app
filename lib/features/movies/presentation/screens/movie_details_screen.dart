@@ -39,7 +39,7 @@ class MovieDetailsScreen extends ConsumerWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 33, right: 16),
+                  padding: const EdgeInsets.only(top: 24, right: 16),
                   child: Row(
                     children: [
                       IconButtonWidget(icon: Assets.arrowLeft, onTap: () => navigationService.goBack()),
@@ -68,8 +68,7 @@ class MovieDetailsScreen extends ConsumerWidget {
                           child: Image.network(
                             '${Constants.imageBaseUrl}${movie.posterPath}',
                             width: double.infinity,
-                            height: MediaQuery.sizeOf(context).height * 0.5,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
